@@ -1,13 +1,158 @@
 body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(gray, black);
+  padding: 20px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, p, ul, li {
+  font-family: sans-serif;
+}
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+ul.header {
+  background-color: #111;
+  padding: 0;
+}
+ul.header li a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px;
+  display: inline-block;
+}
+.content {
+  background-color: #FFF;
+  padding: 20px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.active {
+  background-color: #0099FF;
+}
+
+.log-out {
+  background-color: #111;
+}
+
+.repositories_section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.repositories {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.repository {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favs {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fav {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fav svg {
+  color: yellow;
+}
+
+.repository_titles {
+  display: flex;
+  justify-content: space-between;
+}
+
+.repository_titles h3 {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.repository p, .fav p {
+  margin: 0;
+}
+
+.main h1 {
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+form div {
+  width: 300px;
+}
+
+form input {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+form button {
+  width: 100px;
+  border-radius: 5px;
+  background-color: #111;
+  color: #FFF;
+}
+
+ul {
+  margin-bottom: 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.content {
+  border-radius: 0 0 5px 5px;
+}
+
+ul.header li:first-child a.active {
+  border-radius: 5px 0 0 0;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home {
+  text-align: center;
+}
+
+.home h4 {
+  margin-top: 10px;
+  font-weight: 300;
 }

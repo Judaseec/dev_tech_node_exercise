@@ -11,9 +11,10 @@ const userUseCase = {
             body: JSON.stringify({
                 query: `{ 
                     user (login: "${username}") {
-                      repositories (last:50, orderBy: {field:NAME, direction: DESC}) {
+                      repositories (last:50, orderBy: {field:NAME, direction: ASC}) {
                         nodes{
                           name
+                          url
                         }
                       }
                     }
