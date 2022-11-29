@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import {Route, Routes, NavLink} from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 import Login from './Login'
 import SignUp from './SignUp'
-
 import Main from './Main';
 import { isLoggedUser } from './Main/Helpers';
 import Repositories from './Repositories';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const [isLogged, setIsLogged] = useState(isLoggedUser())
@@ -25,6 +27,7 @@ export default function App() {
 
   return (
       <div className='main'>
+        <ToastContainer />
         <h1>NodeJS - Graphql - React</h1>
           {
             !isLogged ?
@@ -36,7 +39,7 @@ export default function App() {
             <ul className='header'>
               <li><NavLink to="/">Home</NavLink></li>
               <li><NavLink to="repositories">View Repositories</NavLink></li>
-              <li><NavLink to='/' onClick={logOut} className="log-out">Log out</NavLink></li>
+              <li><NavLink to='login' onClick={logOut} className="log-out">Log out</NavLink></li>
             </ul>
           }
         

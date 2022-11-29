@@ -156,3 +156,9 @@ ul.header li:first-child a.active {
   margin-top: 10px;
   font-weight: 300;
 }
+
+.noReps {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

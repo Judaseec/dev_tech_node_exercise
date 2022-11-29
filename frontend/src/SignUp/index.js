@@ -1,12 +1,32 @@
 import React, { useRef } from 'react'
+import { validateEmail } from '../Main/Helpers'
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
     const email = useRef('')
     const githubUser = useRef('')
     const pass = useRef('')
 
+    const validateForm = () => {
+        if (!email.current.value || !pass.current.value || !githubUser.current.value) {
+            toast.error("All inputs are required");
+            return false
+        }
+
+        if (validateEmail(email.current.value)) {
+            toast.error(validateEmail());
+            return false
+        }
+
+        return true
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
+        if (!validateForm()) {
+            return
+        }
+
         let users = !localStorage.getItem('users') ? [] : JSON.parse(localStorage.getItem('users'))
 
         if(email.current.value && pass.current.value && githubUser.current.value) {
@@ -17,6 +37,7 @@ export default function SignUp() {
             }
             users.push(newUser)
             localStorage.setItem('users', JSON.stringify(users))
+            toast.success('New user added successfully')
 
             event.target.reset()
         }

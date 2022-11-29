@@ -5,6 +5,7 @@ import { StarFill } from 'react-bootstrap-icons'
 export default function Repositories() {
     const [repositories, setRepositories] = useState(getRepositories())
     const [favs, setFavs] = useState(getFavs())
+    const [noRepositories, setNoRepositories] = useState(false)
 
     useEffect(() => {
         async function getRepositories () {
@@ -32,6 +33,8 @@ export default function Repositories() {
             getRepositories()
         }
 
+        setNoRepositories((repositories.length === 0 && favs.length === 0))
+
       }, [repositories, favs]);
 
     const clickFav = (event) => {
@@ -54,7 +57,12 @@ export default function Repositories() {
         localStorage.setItem('favs', JSON.stringify(favs))
     }
 
-    return (
+    return noRepositories ? (
+        <div className="noReps">
+            <h3>There is no repositories to show</h3>
+        </div>
+    ) :
+    (
         <div>
             <div className="repository_titles">
                 <h3>Repositories</h3>
@@ -65,7 +73,7 @@ export default function Repositories() {
                 {   
                     repositories.map((element, key) => (
                         <div key={"repo-" + element.name} className='repository'>
-                            <p>{element.name}</p>
+                            <a href={element.url} target="_blank" rel="noreferrer"><p>{element.name}</p></a>
                             <StarFill data-key={key} data-collection='repositories' onClick={clickFav}/>
                         </div>
                     ))
@@ -76,7 +84,7 @@ export default function Repositories() {
                 {   
                     favs.map((element, key) => (
                         <div key={"fav-" + element.name} className='fav'>
-                            <p>{element.name}</p>
+                            <a href={element.url} target="_blank" rel="noreferrer"><p>{element.name}</p></a>
                             <StarFill data-key={key} data-collection='favs' onClick={clickFav}/>
                         </div>
                     ))

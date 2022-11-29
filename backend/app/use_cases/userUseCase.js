@@ -3,6 +3,7 @@ import fetch from "node-fetch"
 
 const userUseCase = {
     fetchRepositories: async (username) => {
+      try {
         let result = await fetch(env.GITHUB_GRAPHQL_URL_ENDPOINT, {
             method: 'POST',
             headers: {
@@ -24,7 +25,19 @@ const userUseCase = {
 
         let response = await result.json()
 
-        return response.data.user.repositories.nodes
+        if (result.status >= 400) {
+          return { error: response.message, status: result.status }
+        }
+
+        if (!response.data || !response.data.user ){
+          return { data: [], status: 200 }
+        }
+        
+        return { data: response.data.user.repositories.nodes, status: 200 }
+      } catch (error) {
+        return {error: error.message, status: 500}
+      } 
+
     }
 }
 

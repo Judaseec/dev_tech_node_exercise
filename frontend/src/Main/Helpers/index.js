@@ -14,9 +14,18 @@ function getFavs() {
     return localStorage.getItem('favs') ? JSON.parse(localStorage.getItem('favs')) : []
 }
 
+function validateEmail(email) {
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      return 'Invalid email address'
+    }
+  
+    return ''
+  }
+
 export {
     getCurrentUser,
     isLoggedUser,
     getRepositories,
     getFavs,
+    validateEmail
 }    

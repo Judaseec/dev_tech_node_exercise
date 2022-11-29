@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { isLoggedUser } from '../Main/Helpers'
+import { toast } from 'react-toastify';
+import { isLoggedUser, validateEmail } from '../Main/Helpers'
 
 export default function Login() {
     const email = useRef('')
@@ -14,8 +15,27 @@ export default function Login() {
         }
       }, [navigate]);
 
+    const validateForm = () => {
+        if (!email.current.value || !pass.current.value) {
+            toast.error("Missing login values");
+            return false
+        }
+
+        if (validateEmail(email.current.value)) {
+            toast.error(validateEmail());
+            return false
+        }
+
+        return true
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        if (!validateForm()) {
+            return
+        }
+
         if (email.current.value && pass.current.value) {
             let users = !localStorage.getItem('users') ? [] : JSON.parse(localStorage.getItem('users'))
 
@@ -24,7 +44,7 @@ export default function Login() {
             })
             
             if (!currentUser) {
-                console.log('User no encontrado')
+                toast.error("User not found");
                 return
             }
 
@@ -34,13 +54,14 @@ export default function Login() {
                 location.state.isLogged = isLoggedUser()
             }
             // return navigate("/")
+
+            toast.success('Welcome')
             window.location.reload()
         }
     }
 
     return isLoggedUser() ? null : (
         <div>
-            {console.log(location.state)}
             <form onSubmit={handleSubmit}>
                 <div>
                     <input id='email' name='email' placeholder='Email' type='text' ref={email} />
