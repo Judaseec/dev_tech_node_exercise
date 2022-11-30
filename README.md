@@ -17,6 +17,12 @@ npm run start
 
 Para consultar los repositorios es requerido recibir el usuario de github debido a que no se encuentra terminado la obtención del token por [oauth app](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) en cambio se genera directamente desde github un [token personal](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic) requerido para poder consultar al API de graqphql.
 
+Una vez obtenido el token, debera ser agregado en el archivo de .env en la variable __GITHUB_TOKEN__
+
+```
+GITHUB_TOKEN=<token>
+```
+
 ## Frontend
 
 Ubicado dentro de la carpeta __frontend__,  contiene una aplicación react la cuál es usada para consumir el API creado en NodeJS y realizar las consultas de los repositorios de un usuario a graphql
